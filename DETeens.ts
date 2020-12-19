@@ -1,6 +1,6 @@
 /*
 
-// Dallas East Teens! A multipurpose chat bot for Discord. Features include, moderation, sound effects, etc...
+// DE Teens! A multipurpose chat bot for Discord. Features include, moderation, sound effects, etc...
 // Written completely in TypeScript!
 // Invite Link
 // https://discord.com/api/oauth2/authorize?client_id=761792910088994816&permissions=8&scope=bot
