@@ -1,0 +1,32 @@
+{
+  "name": "deteens",
+  "version": "1.0.0",
+  "description": "discord bot",
+  "main": "DETeens.ts",
+  "dependencies": {
+    "@discordjs/opus": "^0.3.3",
+    "better-sqlite3": "^7.1.1",
+    "cloudconvert": "^2.1.6",
+    "discord.js": "^12.5.1",
+    "discord.js-poll-embed": "^1.0.2",
+    "ffmpeg-static": "^4.2.7",
+    "node-fetch": "^2.6.1",
+    "node-gyp": "^7.1.2",
+    "node-notifier": "^8.0.0",
+    "ts-node": "^9.1.1",
+    "webhook-discord": "^3.7.7",
+    "ws": "^7.4.1",
+    "xmlhttprequest": "1.8.0",
+    "youtube-search": "^1.1.4",
+    "ytdl-core-discord": "^1.2.4",
+    "ytsearcher": "^1.2.2"
+  },
+  "devDependencies": {
+    "typescript": "^4.1.2"
+  },
+  "scripts": {
+    "start": "node ."
+  },
+  "author": "",
+  "license": "MIT"
+}
