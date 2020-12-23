@@ -57,7 +57,8 @@ module.exports = {
                 { name: '\`!roles\`', value: `lists all server roles`, inline: true},
                 { name: '\`!uptime\`', value: `show bot uptime in minutes and seconds`, inline: true},
                 { name: '\`!online\`', value: `See how many people are online`, inline: true},
-                { name: '\`!service\`', value: `Gets the latest virtual church service link`, inline: true}
+                { name: '\`!service\`', value: `Gets the latest virtual church service link`, inline: true},
+                { name: '\`!band\`', value: `Scroll through the latest band app posts using the reactions!`, inline: true}
             )
             msg.channel.send(exampleEmbed);
             

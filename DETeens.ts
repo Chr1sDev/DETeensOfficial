@@ -99,9 +99,9 @@ client.on('message', msg => {
     } else if(msg.content.startsWith(`${prefix}eval`)) {
       command.execute(msg, args);
     } else {
-      setTimeout(() => {
-        msg.delete();
-      }, 3000);
+      // setTimeout(() => {
+      //   msg.delete();
+      // }, 3000);
       command.execute(msg, args);
     }
   } catch (error) {
@@ -244,13 +244,13 @@ if (voice.content.startsWith(`${prefix}fx`)) {
 });
 
 
-/* ///////////////////////////////////////
+///////////////////////////////////////
 // MEMBER LOGGING
 ///////////////////////////////////////
 
 client.on('guildMemberUpdate', async (oldMember, newMember) => {
 
-const channel = oldMember.client.channels.cache.find(channel => channel.id === `788496585726230609`);
+const channel = oldMember.client.channels.cache.find(channel => channel.id === `789727427462955009`);
 
   //declare changes
   var Changes = {
@@ -344,7 +344,7 @@ function nick(oldMember, newMember, auditChannel) {
 
 client.on('guildMemberRemove', async member => {
 
-  const channel = member.client.channels.cache.find(channel => channel.id === `788496585726230609`);
+  const channel = member.client.channels.cache.find(channel => channel.id === `789727427462955009`);
 
   const fetchedLogs = await member.guild.fetchAuditLogs({
       limit: 1,
@@ -383,7 +383,7 @@ function embed(channel, info, member) {
 
 client.on(`userUpdate`, (oldUser, newUser) => {
 
-  const channel = oldUser.client.channels.cache.find(channel => channel.id === `788496585726230609`);
+  const channel = oldUser.client.channels.cache.find(channel => channel.id === `789727427462955009`);
 
   if (oldUser.username !== newUser.username) {
     username(oldUser, newUser, channel);
@@ -412,7 +412,7 @@ function username(oldUser, newUser, auditChannel) {
 
 client.on('channelCreate', newChannel => {
 
-  const channel = newChannel.client.channels.cache.find(channel => channel.id === `788496585726230609`);
+  const channel = newChannel.client.channels.cache.find(channel => channel.id === `789727427462955009`);
 
   if (newChannel.name == undefined) return;
   addChannel(newChannel, channel);
@@ -437,7 +437,7 @@ client.on('channelCreate', newChannel => {
 
 client.on('channelDelete', removedChannel => {
 
-  const channel = removedChannel.client.channels.cache.find(channel => channel.id === `788496585726230609`);
+  const channel = removedChannel.client.channels.cache.find(channel => channel.id === `789727427462955009`);
 
   removeChannel(removedChannel, channel);
 
@@ -460,7 +460,7 @@ client.on('channelDelete', removedChannel => {
 
 client.on(`channelUpdate`, (oldChannel, newChannel) => {
 
-  const channel = oldChannel.client.channels.cache.find(channel => channel.id === `788496585726230609`);
+  const channel = oldChannel.client.channels.cache.find(channel => channel.id === `789727427462955009`);
 
   if(newChannel.name !== oldChannel.name) {
     channelName(oldChannel, newChannel, channel);
@@ -505,7 +505,7 @@ client.on(`channelUpdate`, (oldChannel, newChannel) => {
 
 client.on(`roleCreate`, newRole => {
 
-const channel = newRole.client.channels.cache.find(channel => channel.id === `788496585726230609`);
+const channel = newRole.client.channels.cache.find(channel => channel.id === `789727427462955009`);
 
 createRole(newRole, channel);
   
@@ -529,7 +529,7 @@ createRole(newRole, channel);
 
 client.on(`roleDelete`, delRole => {
 
-  const channel = delRole.client.channels.cache.find(channel => channel.id === `788496585726230609`);
+  const channel = delRole.client.channels.cache.find(channel => channel.id === `789727427462955009`);
   
   deleteRole(delRole, channel);
     
@@ -553,7 +553,7 @@ client.on(`roleDelete`, delRole => {
 
 client.on(`roleUpdate`, (oldRole, newRole) => {
 
-  const channel = oldRole.client.channels.cache.find(channel => channel.id === `788496585726230609`);
+  const channel = oldRole.client.channels.cache.find(channel => channel.id === `789727427462955009`);
   
   if (oldRole.name !== newRole.name) {
     roleName(oldRole, newRole, channel);
@@ -575,7 +575,7 @@ client.on(`roleUpdate`, (oldRole, newRole) => {
   
     }
   
-});  */
+}); 
 
 /////////////////////
 // MESSAGE LOGGING
