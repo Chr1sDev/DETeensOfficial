@@ -10,14 +10,14 @@ module.exports = {
             if (channel == undefined) {
                 msg.channel.overwritePermissions([
                     {
-                    id: `698634625077215372`,
+                    id: `789699938564702236`,
                     deny: ['SEND_MESSAGES'],
                     },
                 ], 'lock channel').catch(error => console.log(error));
             } else {
                 channel.overwritePermissions([
                     {
-                    id: `698634625077215372`,
+                    id: `789699938564702236`,
                     deny: ['SEND_MESSAGES'],
                     },
                 ], 'lock channel').catch(error => console.log(error));

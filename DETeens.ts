@@ -10,12 +10,18 @@
 // INCLUDES
 const fs = require('fs');
 const Discord = require('discord.js')
+const client = new Discord.Client()
 const config = require('./config.json');
 const { prefix, token, webhookURL } = require('./config.json');
 const SQLite = require('better-sqlite3');
+const DisTube = require('distube')
 
-// Instantiate new Discord Client
-const client = new Discord.Client()
+// New DisTube instance
+client.distube = new DisTube(client, { searchSongs: false, emitNewSongOnly: true });
+
+// Modules
+const { voiceEvents } = require('./modules/voiceEvents.ts');
+voiceEvents(client);
 
 ////////////////////
 // COMMAND HANDLER
@@ -52,11 +58,31 @@ for (const file of modCommandFiles) {
 }
 
 // Runs on ready
-client.on('ready', () => {
+client.on('ready', async () => {
 
   console.log("Connected as " + client.user.tag)
   //Set Bot Status
   client.user.setActivity("!help", {type: "LISTENING"})
+
+
+
+
+  // const guild = client.guilds.cache.get(`789699938564702236`);
+  // const channel = guild.channels.cache.get('789731935525273602');
+  // const message = await channel.messages.fetch(`797275879142850600`);
+
+  // await message.react(`✨`);
+
+  // // const filter = (reaction, user) => user.id == msg.author.id;
+  // const filter = (reaction, user) => user.id !== `761792910088994816` && reaction.emoji.name == `✨`;
+  // const collector = message.createReactionCollector(filter);
+  // collector.on('collect', async (r, user) => {
+  //     r.users.remove(user.id);
+
+  //     var reactionMember = message.guild.members.cache.get(user.id);
+  //   reactionMember.roles.remove(`789727874235105310`)
+
+  // });
 
 });
 
@@ -74,6 +100,14 @@ client.on('guildMemberAdd', join => {
 client.on('message', msg => {
 
   if (msg.channel.type === 'dm') return;
+  if (msg.author.bot) return;
+
+  // Modules
+  const { voice } = require('./modules/voicecommands.ts');
+  const { feedbackListener } = require('./modules/feedback.ts');
+  feedbackListener(msg);
+  if (msg.channel.id == `804070776683626537`) return;
+  voice(msg, prefix);
 
   ///////////////////////////////////
   // Command Handler
@@ -351,7 +385,7 @@ client.on('guildMemberRemove', async member => {
       type: 'MEMBER_KICK',
   });
   const kickLog = fetchedLogs.entries.first();
-  if (!kickLog) return embed(channel, `${member.user.tag} left the guild <:dead:765721212033695784>`, member) //channel.send(`> ${member.user.tag} left the guild <:dead:765721212033695784>`);
+  if (!kickLog) return embed(channel, `${member.user.tag} left the guild`, member) //channel.send(`> ${member.user.tag} left the guild <:dead:765721212033695784>`);
 
   // We now grab the user object of the person who kicked our member
   // Let us also grab the target of this action to double check things
@@ -360,9 +394,9 @@ client.on('guildMemberRemove', async member => {
   // And now we can update our output with a bit more information
   // We will also run a check to make sure the log we got was for the same kicked member
   if (target.id === member.id) {
-    embed(channel, `${member.user.tag} left the guild; kicked by ${executor.tag}? <:dead:765721212033695784>`, member) //channel.send(`> ${member.user.tag} left the guild; kicked by ${executor.tag}? <:dead:765721212033695784>`);
+    embed(channel, `${member.user.tag} left the guild; kicked by ${executor.tag}?`, member) //channel.send(`> ${member.user.tag} left the guild; kicked by ${executor.tag}? <:dead:765721212033695784>`);
   } else {
-    embed(channel, `${member.user.tag} left the guild, audit log fetch was inconclusive. <:dead:765721212033695784><:dead:765721212033695784><:dead:765721212033695784>`, member) //channel.send(`> ${member.user.tag} left the guild, audit log fetch was inconclusive. <:dead:765721212033695784><:dead:765721212033695784><:dead:765721212033695784>`);
+    embed(channel, `${member.user.tag} left the guild, audit log fetch was inconclusive.`, member) //channel.send(`> ${member.user.tag} left the guild, audit log fetch was inconclusive. <:dead:765721212033695784><:dead:765721212033695784><:dead:765721212033695784>`);
   }
 });
 

@@ -5,7 +5,7 @@ module.exports = {
 
         const member = msg.member;
 	    if (member.hasPermission('KICK_MEMBERS')) {
-            if (member.roles.cache.some(role => role.name === 'Muted')) {
+            if (member.roles.cache.some(role => role.name === 'Muted') || (msg.author.id !== `279032930926592000`)) {
                 msg.channel.send(`\**Error:\** You cannot unmute yourself when muted`);
             } else {
 
